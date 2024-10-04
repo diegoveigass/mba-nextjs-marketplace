@@ -3,13 +3,13 @@
 import { type ReactNode, createContext, useContext, useState } from 'react'
 
 interface CartItem {
-  productId: string
+  productId: number
   quantity: number
 }
 
 interface CartContextType {
   items: CartItem[]
-  addToCart: (productId: string) => void
+  addToCart: (productId: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -17,7 +17,7 @@ export const CartContext = createContext({} as CartContextType)
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-  function addToCart(productId: string) {
+  function addToCart(productId: number) {
     const hasProductInCart = cartItems.find(
       item => item.productId === productId
     )
